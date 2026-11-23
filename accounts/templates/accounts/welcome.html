@@ -1,0 +1,12 @@
+{% extends "accounts/base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+  <section class="auth-card welcome-card">
+    <h1>WELCOME</h1>
+    <p>You are logged in as <strong>{{ request.user.get_full_name|default:request.user.username }}</strong>.</p>
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="submit-button" type="submit">Log out</button>
+    </form>
+  </section>
+{% endblock %}

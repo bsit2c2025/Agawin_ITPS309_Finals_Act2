@@ -1,0 +1,26 @@
+{% extends "accounts/base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <section class="auth-card login-card" aria-labelledby="page-title">
+    <h1 id="page-title">LOGIN</h1>
+    {% if messages %}
+      <div class="messages" role="status">
+        {% for message in messages %}<p class="message {{ message.tags }}">{{ message }}</p>{% endfor %}
+      </div>
+    {% endif %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="field-wrap">
+        <input id="login-id" name="email_or_username" type="text" placeholder=" " autocomplete="username" required>
+        <label for="login-id">Email or Username</label>
+      </div>
+      <div class="field-wrap">
+        <input id="login-password" name="password" type="password" placeholder=" " autocomplete="current-password" required>
+        <label for="login-password">Password</label>
+      </div>
+      <button class="submit-button" type="submit">Log in</button>
+    </form>
+  </section>
+  <a class="below-link" href="{% url 'password_reset' %}">Forgot Password?</a>
+  <p class="switch-link">New here? <a href="{% url 'register' %}">Create an account</a></p>
+{% endblock %}

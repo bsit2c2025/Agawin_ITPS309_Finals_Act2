@@ -1,0 +1,33 @@
+{% extends "accounts/base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+  <section class="auth-card register-card" aria-labelledby="page-title">
+    <h1 id="page-title">REGISTER</h1>
+    {% if messages %}
+      <div class="messages" role="status">
+        {% for message in messages %}<p class="message {{ message.tags }}">{{ message }}</p>{% endfor %}
+      </div>
+    {% endif %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="field-wrap">
+        <input id="register-name" name="name" type="text" placeholder=" " autocomplete="name" required>
+        <label for="register-name">Name</label>
+      </div>
+      <div class="field-wrap">
+        <input id="register-email" name="email" type="email" placeholder=" " autocomplete="email" required>
+        <label for="register-email">Email</label>
+      </div>
+      <div class="field-wrap">
+        <input id="register-password" name="password" type="password" placeholder=" " autocomplete="new-password" required>
+        <label for="register-password">Password</label>
+      </div>
+      <label class="terms-row" for="agree">
+        <input id="agree" name="agree" type="checkbox" required>
+        <span>I agree to the Terms of Service and Privacy Policy</span>
+      </label>
+      <button class="submit-button" type="submit">Submit</button>
+    </form>
+  </section>
+  <p class="switch-link">Already registered? <a href="{% url 'login' %}">Log in</a></p>
+{% endblock %}
